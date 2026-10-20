@@ -51,19 +51,19 @@ python contacts.py
 
 ## 设计与取舍
 
-**Q：SQL 为什么用 `?` 占位符，不用 f-string 拼接？**
+**Q：SQL 为什么用问号占位符，不用 f-string 拼接？**
 
 A：防注入（输入会被当成 SQL 执行，`' OR 1=1 --` 直接泄露全表），也避免引号转义（O'Brien 这类直接拼会语法报错）。
 
-**Q：写 CSV 为什么用 `encoding="utf-8-sig"`？**
+**Q：写 CSV 为什么用 utf-8-sig 编码？**
 
 A：Excel 不认无 BOM 的 UTF-8，打开中文会乱码；加 BOM 它才识别编码。
 
-**Q：写 CSV 为什么要 `newline=""`？**
+**Q：写 CSV 为什么要加 newline 参数？**
 
 A：否则 Windows 下 csv 模块自带 `\r\n`，Python 文本层再转一次变成 `\r\r\n`，每行之间就多一个空行。
 
-**Q：`.gitignore` 为什么要排除 `*.db`？**
+**Q：.gitignore 为什么要排除 *.db？**
 
 A：db 是二进制的个人测试数据，diff 看不了、多人会冲突、可能含敏感信息；代码进仓库，数据不进。
 
